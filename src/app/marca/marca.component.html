@@ -1,0 +1,58 @@
+<app-siderbar></app-siderbar>
+<p-toast></p-toast>
+
+<p-card header="Marca">
+  <p class="m-0">
+    MARCA DEL COCHE
+  </p>
+</p-card>
+
+<!-- Toolbar con botón para crear una nueva Marca -->
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <button pButton type="button" label="Nueva Marca" icon="pi pi-plus" class="p-mr-2" (click)="openNew()"></button>
+  </div>
+</p-toolbar>
+
+<p-card header="Listar Marcas">
+  <p-table *ngIf="marcas && marcas.length > 0" [value]="marcas" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th style="width: 8rem">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-marca>
+      <tr>
+        <td>{{ marca.id }}</td>
+        <td>{{ marca.nombre }}</td>
+        <td>
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMarca(marca)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteMarca(marca)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Mensaje si no hay marcas -->
+  <p *ngIf="marcas.length === 0">No hay marcas para mostrar.</p>
+</p-card>
+
+<!-- Diálogo para crear/editar marca -->
+<p-dialog [(visible)]="marcaDialog" [modal]="true" [style]="{width: '50vw'}" header="Detalles de la Marca" [closable]="false">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" pInputText [(ngModel)]="marca.nombre" required />
+    </div>
+  </div>
+
+  <p-footer>
+    <button pButton type="button" label="Guardar" icon="pi pi-check" (click)="saveMarca()"></button>
+    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary" (click)="hideDialog()"></button>
+  </p-footer>
+</p-dialog>
+
+<!-- Confirmación de eliminación -->
+<p-confirmDialog></p-confirmDialog>
