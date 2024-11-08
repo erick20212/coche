@@ -1,20 +1,23 @@
 <app-siderbar></app-siderbar>
 <p-toast></p-toast>
 
-<p-card header="Coches">
-  <p class="m-0">
-   TIPO DE COCHES
-  </p>
+<!-- Encabezado de la sección "Tipo de Coches" -->
+<p-card styleClass="custom-card-header">
+  <h2 class="text-center custom-header-text">Tipo de Coches</h2>
+  <p class="text-center custom-subtitle-text">Gestión de Coches</p>
 </p-card>
 
-<p-toolbar>
+<!-- Barra de herramientas con el botón "Nuevo Coche" -->
+<p-toolbar styleClass="custom-toolbar mb-3">
   <div class="p-toolbar-group-left">
-    <button pButton type="button" label="Nuevo Coche" icon="pi pi-plus" class="p-mr-2" (click)="openNew()"></button>
+    <button pButton type="button" label="Nuevo Coche" icon="pi pi-plus" class="p-button-raised p-button-primary" (click)="openNew()"></button>
   </div>
 </p-toolbar>
 
-<p-card header="Listar Coches">
-  <p-table *ngIf="coches && coches.length > 0" [value]="coches" [tableStyle]="{ 'min-width': '50rem' }">
+<!-- Sección de tabla para listar coches -->
+<p-card header="Listado de Coches" styleClass="custom-card">
+  <p-table *ngIf="coches && coches.length > 0" [value]="coches" class="custom-table" [tableStyle]="{ 'min-width': '60rem' }">
+    <!-- Encabezados de la tabla -->
     <ng-template pTemplate="header">
       <tr>
         <th>ID</th>
@@ -25,6 +28,8 @@
         <th style="width: 8rem">Acciones</th>
       </tr>
     </ng-template>
+
+    <!-- Cuerpo de la tabla -->
     <ng-template pTemplate="body" let-coche>
       <tr>
         <td>{{ coche.id }}</td>
@@ -32,58 +37,66 @@
         <td>{{ coche.puertas }}</td>
         <td>{{ coche.tipo?.nombre }}</td>
         <td>{{ coche.marca?.nombre }}</td>
-        <td>
-          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCoche(coche)"></button>
-          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCoche(coche)"></button>
+        <td class="text-center">
+          <!-- Botón Editar con efecto neón -->
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2 neon-action-button" (click)="editCoche(coche)"></button>
+
+          <!-- Botón Eliminar con efecto neón -->
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger neon-action-button" (click)="deleteCoche(coche)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 
-  <p *ngIf="coches.length === 0">No hay coches para mostrar.</p>
+  <!-- Mensaje cuando no hay coches para mostrar -->
+  <p *ngIf="coches.length === 0" class="text-center text-muted" style="padding: 1em;">No hay coches para mostrar.</p>
 </p-card>
 
-<p-dialog [(visible)]="cocheDialog" [modal]="true" [style]="{width: '70vw', height: '70vh', 'min-height': '400px'}" header="Detalles del Coche" [closable]="false">
-  <div class="p-fluid">
+<!-- Diálogo modal para agregar/editar coches -->
+<p-dialog [(visible)]="cocheDialog" [modal]="true" [style]="{ width: '50vw' }" header="Detalles del Coche" [closable]="false" styleClass="custom-dialog">
+  <div class="p-fluid custom-dialog-content">
     <div class="p-field">
-      <label for="placa">Placa</label>
-      <input id="placa" type="text" pInputText [(ngModel)]="coche.placa" required />
+      <label for="placa" class="custom-label">Placa</label>
+      <input id="placa" type="text" pInputText [(ngModel)]="coche.placa" required class="custom-input"/>
     </div>
 
     <div class="p-field">
-      <label for="puertas">Puertas</label>
-      <input id="puertas" type="text" pInputText [(ngModel)]="coche.puertas" required />
+      <label for="puertas" class="custom-label">Puertas</label>
+      <input id="puertas" type="text" pInputText [(ngModel)]="coche.puertas" required class="custom-input"/>
     </div>
 
     <div class="p-field">
-      <label for="tipo">Tipo</label>
+      <label for="tipo" class="custom-label">Tipo</label>
       <p-dropdown 
         id="tipo" 
         [(ngModel)]="coche.tipo" 
         [options]="tipos" 
         optionLabel="nombre" 
         filter="true"  
-        placeholder="Selecciona Tipo">
+        placeholder="Selecciona Tipo"
+        class="custom-dropdown">
       </p-dropdown>
     </div>
 
     <div class="p-field">
-      <label for="marca">Marca</label>
+      <label for="marca" class="custom-label">Marca</label>
       <p-dropdown 
         id="marca" 
         [(ngModel)]="coche.marca" 
         [options]="marcas" 
         optionLabel="nombre" 
         filter="true"  
-        placeholder="Selecciona Marca">
+        placeholder="Selecciona Marca"
+        class="custom-dropdown">
       </p-dropdown>
     </div>
   </div>
 
-  <p-footer>
-    <button pButton type="button" label="Guardar" icon="pi pi-check" (click)="saveCoche()"></button>
-    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary" (click)="hideDialog()"></button>
+  <p-footer class="text-center">
+    <button pButton type="button" label="Guardar" icon="pi pi-check" class="p-button p-button-raised p-button-success custom-footer-button" (click)="saveCoche()"></button>
+    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button p-button-secondary custom-footer-button" (click)="hideDialog()"></button>
   </p-footer>
 </p-dialog>
 
-<p-confirmDialog></p-confirmDialog>
+<!-- Diálogo de confirmación de eliminación -->
+<p-confirmDialog styleClass="custom-confirm-dialog"></p-confirmDialog>

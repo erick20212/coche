@@ -1,0 +1,191 @@
+/* Estilo del encabezado principal con efecto neón */
+.custom-card-header {
+    background-color: #1a1c2b;
+    color: #ffffff;
+    border: 1px solid #3a3d52;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+  
+.custom-header-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: #00e5ff;
+    text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 15px #00e5ff;
+}
+  
+.custom-subtitle-text {
+    font-size: 1.2em;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+}
+
+/* Barra de herramientas */
+.custom-toolbar {
+    background-color: #282c44;
+    color: white;
+    border-radius: 8px;
+    padding: 0.75em 1em;
+    margin-bottom: 1em;
+}
+
+.p-button-primary {
+    background-color: #00ffdd !important;
+    border-color: #00ffdd !important;
+    color: #000;
+    text-shadow: 0 0 3px #00ffdd;
+    box-shadow: 0 0 10px #00ffdd, 0 0 20px #00ffdd;
+}
+
+/* Tarjeta principal */
+.custom-card {
+    background-color: #1a1c2b;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 1em;
+}
+
+/* Tabla con efecto neón */
+.custom-table .p-datatable-header {
+    background-color: #333a4d;
+    color: #00e5ff;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff;
+}
+  
+.custom-table .p-datatable-tbody > tr > td {
+    padding: 0.75em;
+    color: #e3e7ea;
+}
+
+/* Diálogo modal */
+.custom-dialog {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background-color: #1a1c2b;
+    color: #ffffff;
+}
+
+/* Contenido del diálogo */
+.custom-dialog-content {
+    padding: 1.5em;
+}
+
+/* Estilo para las etiquetas */
+.custom-label {
+    font-weight: bold;
+    color: #00ffdd;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px #00ffdd, 0 0 10px #00ffdd;
+    margin-bottom: 0.5em;
+}
+
+/* Campo de entrada */
+.custom-input {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #5a667a;
+    border-radius: 6px;
+    background-color: #1f2433;
+    color: #ffffff;
+    box-shadow: 0 0 5px #5a667a;
+}
+
+.custom-input:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 10px #00e5ff, 0 0 15px #00e5ff;
+    outline: none;
+}
+
+/* Estilo para el Dropdown */
+.custom-dropdown .p-dropdown {
+    width: 100%;
+    background-color: #1f2433;
+    color: #ffffff;
+    border: 1px solid #5a667a;
+    border-radius: 6px;
+}
+
+.custom-dropdown .p-dropdown:hover {
+    box-shadow: 0 0 5px #00e5ff;
+}
+
+/* Botones en el pie del diálogo */
+.custom-footer-button {
+    width: 120px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Botón "Guardar" en verde neón */
+.p-button-success.custom-footer-button {
+    background-color: #39ff14 !important;
+    border-color: #39ff14 !important;
+    color: #000;
+    text-shadow: 0 0 3px #39ff14;
+    box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+}
+
+/* Botón "Cancelar" en rojo neón */
+.p-button-secondary.custom-footer-button {
+    background-color: #ff073a !important;
+    border-color: #ff073a !important;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ff073a;
+    box-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a;
+}
+
+/* Botones de acciones en la tabla con efecto neón */
+.p-button-warning {
+    background-color: #ffea00 !important;
+    border-color: #ffea00 !important;
+    color: #000;
+    text-shadow: 0 0 3px #ffea00;
+    box-shadow: 0 0 10px #ffea00, 0 0 20px #ffea00;
+}
+  
+.p-button-danger {
+    background-color: #ff073a !important;
+    border-color: #ff073a !important;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ff073a;
+    box-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a;
+}
+
+/* Efecto neón para los botones de acción en la tabla */
+.neon-action-button {
+    position: relative;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+/* Efecto neón para el botón de editar */
+.p-button-warning.neon-action-button {
+    background-color: #ffea00 !important;
+    border-color: #ffea00 !important;
+    color: #000;
+    text-shadow: 0 0 3px #ffea00;
+    box-shadow: 0 0 10px #ffea00, 0 0 20px #ffea00;
+}
+
+/* Efecto neón para el botón de eliminar */
+.p-button-danger.neon-action-button {
+    background-color: #ff073a !important;
+    border-color: #ff073a !important;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ff073a;
+    box-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a;
+}
+
+/* Efecto de resplandor adicional en hover */
+.neon-action-button:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}

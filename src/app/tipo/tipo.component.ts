@@ -34,7 +34,7 @@ import { CardModule } from 'primeng/card';
 })
 export class TipoComponent implements OnInit {
   tipos: Tipo[] = [];
-  tipo!: Tipo;
+  tipo: Tipo = { id: 0, nombre: '' };
   tipoDialog: boolean = false;
   submitted: boolean = false;
 
@@ -45,6 +45,7 @@ export class TipoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("Inicializando TipoComponent y cargando tipos...");
     this.loadTipos();
   }
 
@@ -62,12 +63,14 @@ export class TipoComponent implements OnInit {
   }
 
   openNew() {
+    console.log("Abriendo diálogo para nuevo tipo.");
     this.tipo = { id: 0, nombre: '' };
     this.submitted = false;
     this.tipoDialog = true;
   }
 
   hideDialog() {
+    console.log("Cerrando diálogo.");
     this.tipoDialog = false;
     this.submitted = false;
   }
@@ -78,15 +81,23 @@ export class TipoComponent implements OnInit {
     if (this.tipo.nombre.trim()) {
       if (this.tipo.id) {
         // Actualizar tipo existente
+        console.log("Actualizando tipo existente:", this.tipo);
         this.tipoService.updateTipo(this.tipo).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Tipo actualizado', life: 3000 });
           this.loadTipos();
+        }, (error) => {
+          console.error('Error al actualizar el tipo', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar el tipo', life: 3000 });
         });
       } else {
         // Crear nuevo tipo
+        console.log("Creando nuevo tipo:", this.tipo);
         this.tipoService.createTipo(this.tipo).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Tipo creado', life: 3000 });
           this.loadTipos();
+        }, (error) => {
+          console.error('Error al crear el tipo', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear el tipo', life: 3000 });
         });
       }
 
@@ -96,11 +107,13 @@ export class TipoComponent implements OnInit {
   }
 
   editTipo(tipo: Tipo) {
+    console.log("Editando tipo:", tipo);
     this.tipo = { ...tipo };
     this.tipoDialog = true;
   }
 
   deleteTipo(tipo: Tipo) {
+    console.log("Intentando eliminar tipo:", tipo);
     this.confirmationService.confirm({
       message: `¿Estás seguro de que deseas eliminar este Tipo?`,
       header: 'Confirmar',
@@ -112,8 +125,8 @@ export class TipoComponent implements OnInit {
             this.loadTipos();
           },
           (error) => {
-            console.error('Error al eliminar el Tipo', error);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el Tipo', life: 3000 });
+            console.error('Error al eliminar el tipo', error);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el tipo', life: 3000 });
           }
         );
       }

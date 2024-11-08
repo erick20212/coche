@@ -36,7 +36,7 @@ import { DropdownModule } from 'primeng/dropdown';
 })
 export class CocheComponent implements OnInit {
   coches: Coche[] = [];
-  coche!: Coche;
+  coche: Coche = { id: 0, placa: '', puertas: '', tipo: { id: 0, nombre: '' }, marca: { id: 0, nombre: '' } };
   tipos: Tipo[] = [];
   marcas: Marca[] = [];
   cocheDialog: boolean = false;
@@ -49,6 +49,7 @@ export class CocheComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("Inicializando CocheComponent...");
     this.loadCoches();
     this.loadTipos();
     this.loadMarcas();
@@ -57,9 +58,11 @@ export class CocheComponent implements OnInit {
   loadCoches(): void {
     this.cocheService.getCoches().subscribe(
       (data: Coche[]) => {
+        console.log("Coches cargados:", data);
         this.coches = data;
       },
       (error: any) => {
+        console.error("Error al cargar los coches", error);
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar los coches', life: 3000 });
       }
     );
@@ -68,9 +71,11 @@ export class CocheComponent implements OnInit {
   loadTipos(): void {
     this.cocheService.getTipos().subscribe(
       (data: Tipo[]) => {
+        console.log("Tipos cargados:", data);
         this.tipos = data;
       },
       (error: any) => {
+        console.error("Error al cargar los tipos", error);
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar los tipos', life: 3000 });
       }
     );
@@ -79,21 +84,25 @@ export class CocheComponent implements OnInit {
   loadMarcas(): void {
     this.cocheService.getMarcas().subscribe(
       (data: Marca[]) => {
+        console.log("Marcas cargadas:", data);
         this.marcas = data;
       },
       (error: any) => {
+        console.error("Error al cargar las marcas", error);
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar las marcas', life: 3000 });
       }
     );
   }
 
   openNew() {
+    console.log("Abriendo diálogo para nuevo coche.");
     this.coche = { id: 0, placa: '', puertas: '', tipo: { id: 0, nombre: '' }, marca: { id: 0, nombre: '' } };
     this.submitted = false;
     this.cocheDialog = true;
   }
 
   hideDialog() {
+    console.log("Cerrando diálogo.");
     this.cocheDialog = false;
     this.submitted = false;
   }
@@ -103,22 +112,26 @@ export class CocheComponent implements OnInit {
 
     if (this.coche.placa.trim()) {
       if (this.coche.id) {
+        console.log("Actualizando coche existente:", this.coche);
         this.cocheService.updateCoche(this.coche).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Coche actualizado', life: 3000 });
             this.loadCoches();
           },
           (error: any) => {
+            console.error("Error al actualizar el coche", error);
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar el coche', life: 3000 });
           }
         );
       } else {
+        console.log("Creando nuevo coche:", this.coche);
         this.cocheService.createCoche(this.coche).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Coche creado', life: 3000 });
             this.loadCoches();
           },
           (error: any) => {
+            console.error("Error al crear el coche", error);
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear el coche', life: 3000 });
           }
         );
@@ -130,11 +143,13 @@ export class CocheComponent implements OnInit {
   }
 
   editCoche(coche: Coche) {
+    console.log("Editando coche:", coche);
     this.coche = { ...coche };
     this.cocheDialog = true;
   }
 
   deleteCoche(coche: Coche) {
+    console.log("Intentando eliminar coche:", coche);
     this.confirmationService.confirm({
       message: `¿Estás seguro de que deseas eliminar este coche?`,
       header: 'Confirmar',
@@ -146,6 +161,7 @@ export class CocheComponent implements OnInit {
             this.loadCoches();
           },
           (error: any) => {
+            console.error("Error al eliminar el coche", error);
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el coche', life: 3000 });
           }
         );

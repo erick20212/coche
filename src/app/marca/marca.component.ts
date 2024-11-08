@@ -34,7 +34,7 @@ import { CardModule } from 'primeng/card';
 })
 export class MarcaComponent implements OnInit {
   marcas: Marca[] = [];
-  marca!: Marca;
+  marca: Marca = { id: 0, nombre: '' };
   marcaDialog: boolean = false;
   submitted: boolean = false;
 
@@ -45,14 +45,19 @@ export class MarcaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("Componente MarcaComponent inicializado.");
     this.loadMarcas();
   }
 
   loadMarcas(): void {
+    console.log("Intentando cargar marcas...");
     this.marcaService.getMarca().subscribe(
       (data) => {
         console.log('Marcas cargadas:', data);
         this.marcas = data;
+        if (data.length === 0) {
+          console.warn('No hay marcas disponibles en el backend.');
+        }
       },
       (error) => {
         console.error('Error al cargar las marcas', error);
@@ -62,12 +67,14 @@ export class MarcaComponent implements OnInit {
   }
 
   openNew() {
+    console.log("Abriendo diálogo para nueva marca.");
     this.marca = { id: 0, nombre: '' };
     this.submitted = false;
     this.marcaDialog = true;
   }
 
   hideDialog() {
+    console.log("Cerrando diálogo.");
     this.marcaDialog = false;
     this.submitted = false;
   }
@@ -77,16 +84,22 @@ export class MarcaComponent implements OnInit {
 
     if (this.marca.nombre.trim()) {
       if (this.marca.id) {
-        // Actualizar marca existente
+        console.log("Actualizando marca existente:", this.marca);
         this.marcaService.updateMarca(this.marca).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Marca actualizada', life: 3000 });
           this.loadMarcas();
+        }, (error) => {
+          console.error('Error al actualizar la marca', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo actualizar la marca', life: 3000 });
         });
       } else {
-        // Crear nueva marca
+        console.log("Creando nueva marca:", this.marca);
         this.marcaService.createMarca(this.marca).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Marca creada', life: 3000 });
           this.loadMarcas();
+        }, (error) => {
+          console.error('Error al crear la marca', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear la marca', life: 3000 });
         });
       }
 
@@ -96,11 +109,13 @@ export class MarcaComponent implements OnInit {
   }
 
   editMarca(marca: Marca) {
+    console.log("Editando marca:", marca);
     this.marca = { ...marca };
     this.marcaDialog = true;
   }
 
   deleteMarca(marca: Marca) {
+    console.log("Intentando eliminar marca:", marca);
     this.confirmationService.confirm({
       message: `¿Estás seguro de que deseas eliminar esta Marca?`,
       header: 'Confirmar',

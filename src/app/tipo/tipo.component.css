@@ -1,0 +1,152 @@
+/* Estilo del encabezado principal con efecto neón */
+.custom-card-header {
+    background-color: #1a1c2b;
+    color: #ffffff;
+    border: 1px solid #3a3d52;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    padding: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  
+  .custom-header-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: #00e5ff; /* Color neón */
+    text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff, 0 0 15px #00e5ff;
+  }
+  
+  .custom-subtitle-text {
+    font-size: 1.2em;
+    color: #ff00ff; /* Color neón */
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+  }
+  
+  /* Estilo de p-toolbar con botón neón */
+  .custom-toolbar {
+    background-color: #282c44;
+    color: white;
+    border-radius: 8px;
+    padding: 0.75em 1em;
+    margin-bottom: 1em;
+  }
+  
+  .p-button-primary {
+    background-color: #00ffdd !important;
+    border-color: #00ffdd !important;
+    color: #000;
+    text-shadow: 0 0 3px #00ffdd;
+    box-shadow: 0 0 10px #00ffdd, 0 0 20px #00ffdd;
+  }
+  
+  /* Estilo de p-card */
+  .custom-card {
+    background-color: #1a1c2b;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 1em;
+  }
+  
+  /* Efecto neón para p-table */
+  .custom-table .p-datatable-header {
+    background-color: #333a4d;
+    color: #00e5ff;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff;
+  }
+  
+  .custom-table .p-datatable-tbody > tr > td {
+    padding: 0.75em;
+    color: #e3e7ea;
+  }
+  
+  /* Efecto neón para el diálogo */
+  .custom-dialog {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background-color: #1a1c2b;
+    color: #ffffff;
+  }
+  
+  /* Centrando el cuadro de diálogo */
+  .p-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .custom-dialog-content {
+    padding: 1.5em;
+  }
+  
+  /* Estilo para la etiqueta del campo de entrada con efecto neón */
+  .custom-label {
+    font-weight: bold;
+    color: #00ffdd;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px #00ffdd, 0 0 10px #00ffdd;
+    margin-bottom: 0.5em;
+  }
+  
+  /* Estilo para el campo de entrada con borde neón */
+  .custom-input {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #5a667a;
+    border-radius: 6px;
+    background-color: #1f2433;
+    color: #ffffff;
+    box-shadow: 0 0 5px #5a667a;
+  }
+  
+  .custom-input:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 10px #00e5ff, 0 0 15px #00e5ff;
+    outline: none;
+  }
+  
+  /* Efecto neón para botones en el pie del diálogo */
+  .custom-footer-button {
+    width: 120px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  /* Botón "Guardar" en verde neón */
+  .p-button-success.custom-footer-button {
+    background-color: #39ff14 !important;
+    border-color: #39ff14 !important;
+    color: #000;
+    text-shadow: 0 0 3px #39ff14;
+    box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+  }
+  
+  /* Botón "Cancelar" en rojo neón */
+  .p-button-secondary.custom-footer-button {
+    background-color: #ff073a !important;
+    border-color: #ff073a !important;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ff073a;
+    box-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a;
+  }
+  
+  /* Botones en la tabla con efecto neón */
+  .p-button-warning {
+    background-color: #ffea00 !important;
+    border-color: #ffea00 !important;
+    color: #000;
+    text-shadow: 0 0 3px #ffea00;
+    box-shadow: 0 0 10px #ffea00, 0 0 20px #ffea00;
+  }
+  
+  .p-button-danger {
+    background-color: #ff073a !important;
+    border-color: #ff073a !important;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ff073a;
+    box-shadow: 0 0 10px #ff073a, 0 0 20px #ff073a;
+  }
+  

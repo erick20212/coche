@@ -1,21 +1,23 @@
 <app-siderbar></app-siderbar>
 <p-toast></p-toast>
 
-<p-card header="Marca">
-  <p class="m-0">
-    MARCA DEL COCHE
-  </p>
+<!-- Encabezado de la sección "Marca del Coche" -->
+<p-card styleClass="custom-card-header">
+  <h2 class="text-center custom-header-text">Marca del Coche</h2>
+  <p class="text-center custom-subtitle-text">Gestión de Marcas</p>
 </p-card>
 
-<!-- Toolbar con botón para crear una nueva Marca -->
-<p-toolbar>
+<!-- Barra de herramientas con el botón "Nueva Marca" -->
+<p-toolbar styleClass="custom-toolbar mb-3">
   <div class="p-toolbar-group-left">
-    <button pButton type="button" label="Nueva Marca" icon="pi pi-plus" class="p-mr-2" (click)="openNew()"></button>
+    <button pButton type="button" label="Nueva Marca" icon="pi pi-plus" class="p-button-raised p-button-primary" (click)="openNew()"></button>
   </div>
 </p-toolbar>
 
-<p-card header="Listar Marcas">
-  <p-table *ngIf="marcas && marcas.length > 0" [value]="marcas" [tableStyle]="{ 'min-width': '50rem' }">
+<!-- Sección de tabla para listar marcas -->
+<p-card header="Listado de Marcas" styleClass="custom-card">
+  <p-table *ngIf="marcas && marcas.length > 0" [value]="marcas" class="custom-table" [tableStyle]="{ 'min-width': '60rem' }">
+    <!-- Encabezados de la tabla -->
     <ng-template pTemplate="header">
       <tr>
         <th>ID</th>
@@ -23,36 +25,38 @@
         <th style="width: 8rem">Acciones</th>
       </tr>
     </ng-template>
+
+    <!-- Cuerpo de la tabla -->
     <ng-template pTemplate="body" let-marca>
       <tr>
         <td>{{ marca.id }}</td>
         <td>{{ marca.nombre }}</td>
-        <td>
-          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMarca(marca)"></button>
+        <td class="text-center">
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" (click)="editMarca(marca)"></button>
           <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteMarca(marca)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 
-  <!-- Mensaje si no hay marcas -->
-  <p *ngIf="marcas.length === 0">No hay marcas para mostrar.</p>
+  <!-- Mensaje cuando no hay marcas para mostrar -->
+  <p *ngIf="marcas.length === 0" class="text-center text-muted" style="padding: 1em;">No hay marcas para mostrar.</p>
 </p-card>
 
-<!-- Diálogo para crear/editar marca -->
-<p-dialog [(visible)]="marcaDialog" [modal]="true" [style]="{width: '50vw'}" header="Detalles de la Marca" [closable]="false">
-  <div class="p-fluid">
+<!-- Diálogo modal para agregar/editar marcas -->
+<p-dialog [(visible)]="marcaDialog" [modal]="true" [style]="{ width: '40vw' }" header="Detalles de la Marca" [closable]="false" styleClass="custom-dialog">
+  <div class="p-fluid custom-dialog-content">
     <div class="p-field">
-      <label for="nombre">Nombre</label>
-      <input id="nombre" type="text" pInputText [(ngModel)]="marca.nombre" required />
+      <label for="nombre" class="custom-label">Nombre</label>
+      <input id="nombre" type="text" pInputText [(ngModel)]="marca.nombre" required class="custom-input"/>
     </div>
   </div>
 
-  <p-footer>
-    <button pButton type="button" label="Guardar" icon="pi pi-check" (click)="saveMarca()"></button>
-    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary" (click)="hideDialog()"></button>
+  <p-footer class="text-center">
+    <button pButton type="button" label="Guardar" icon="pi pi-check" class="p-button p-button-raised p-button-success custom-footer-button" (click)="saveMarca()"></button>
+    <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button p-button-secondary custom-footer-button" (click)="hideDialog()"></button>
   </p-footer>
 </p-dialog>
 
-<!-- Confirmación de eliminación -->
-<p-confirmDialog></p-confirmDialog>
+<!-- Diálogo de confirmación de eliminación -->
+<p-confirmDialog styleClass="custom-confirm-dialog"></p-confirmDialog>
